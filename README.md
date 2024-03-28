@@ -3,35 +3,32 @@
 ## Introduction
 This document shows how to create a Secrets Manager secret, reference the secret in an Amazon ECS task definition, and then verify it worked by querying the environment variable inside a container showing the contents of the secret.
 
+***
+
 ## Implementation
-Step 1: Create a Secrets Manager Secret
+**Step 1:** Create a Secrets Manager Secret
 
 Created basic secret and stored two key/value pairs in the secrets
 
+![image](https://github.com/ayushh09/Aws_farget/assets/150698783/7ea1e4b2-bfd0-4dca-a24a-840e946192f0)
+***
 
-
-
-
-
-
+![image](https://github.com/ayushh09/Aws_farget/assets/150698783/da9a0506-3325-41d4-a970-7d39322d98b9)
+***
 
 The key/value pairs to be stored in this secret are the environment variable values in our ECS container.
 
-NOTE: see Creating a Basic Secret in the AWS Secrets Manager User Guide
+> [!NOTE]  
+> see Creating a Basic Secret in the AWS Secrets Manager User Guide.
 
-
-Step 2: Update Your Task Execution IAM Role
-
+**Step 2:** Update Your Task Execution IAM Role
 For Amazon ECS to retrieve the sensitive data from your Secrets Manager secret, we must have the Amazon ECS task execution role and reference it in our task definition. This allows the container agent to pull the necessary Secrets Manager resources.
-
-
-To update your task execution IAM role
-Use the IAM console to update your task execution role with the required permissions.
-Open the IAM console at https://console.aws.amazon.com/iam/.
-In the navigation pane, choose Roles.
-Search the list of roles for ecsTaskExecutionRole and select it.
-Choose Permissions and add inline policy.
-Choose the JSON tab and specify the following JSON text, ensuring that you specify the full ARN of the Secrets Manager secret you created in step 1.
+To update your task execution IAM role. Use the IAM console to update your task execution role with the required permissions.
+1. Open the IAM console at https://console.aws.amazon.com/iam/.
+2. In the navigation pane, choose Roles.
+3. Search the list of roles for ecsTaskExecutionRole and select it.
+4. Choose Permissions and add inline policy.
+5. Choose the JSON tab and specify the following JSON text, ensuring that you specify the full ARN of the Secrets Manager secret you created in step 1.
 
 ```shell 
 {
@@ -56,14 +53,12 @@ Choose the JSON tab and specify the following JSON text, ensuring that you speci
 - **secretsmanager**:**GetSecretValue**– with this permission to retrieve the secret from Secrets Manager.
 - **kms**:**Decrypt**–Required only if your secret uses a customer managed key and not the default key.
 
-Step 3: Create an Amazon ECS Task Definition
-
-we can use the Amazon ECS console to create a task definition that references a Secrets Manager secret.
-To create a task definition that specifies a secret
+**Step 3:** Create an Amazon ECS Task Definition
+We can use the Amazon ECS console to create a task definition that references a Secrets Manager secret. To create a task definition that specifies a secret
 Use the IAM console to update your task execution role with the required permissions.
-Open the console at https://console.aws.amazon.com/ecs/v2.
-In the navigation pane, choose Task definitions.
-Choose Create new task definition, Create new task definition with JSON.
+1. Open the console at https://console.aws.amazon.com/ecs/v2.
+2. In the navigation pane, choose Task definitions.
+3. Choose Create new task definition, Create new task definition with JSON.
 
 ```shell
 {
@@ -129,27 +124,28 @@ Choose Create new task definition, Create new task definition with JSON.
 
 ```
 
-6. Choose Create.
+4. Choose Create.
 
 
-Step 4: Create an Amazon ECS Cluster
+**Step 4:** Create an Amazon ECS Cluster
 
+We can use the Amazon ECS console to create a cluster with fargate options
 
-we can use the Amazon ECS console to create a cluster with fargate options
+![image](https://github.com/ayushh09/Aws_farget/assets/150698783/aedbaa9d-5179-4465-b17f-b392f7823f0d)
+***
 
-
-
-Step 5: Run an Amazon ECS Task
-
+**Step 5:** Run an Amazon ECS Task
 Create a service with the same task definition which are created in step 3 with below configuration
 
+![image](https://github.com/ayushh09/Aws_farget/assets/150698783/fabd95f9-7ed0-4684-bb53-129c9103b101)
 
 
-step 6: Verify
+**Step 6:** Verify
 
 We can verify all of the steps were completed successfully and the environment variable was created properly in our container
 Check the logs 
 
+![image](https://github.com/ayushh09/Aws_farget/assets/150698783/4e3ecb83-b2a2-4a84-81f1-028f85085f6a)
 
 
 Secrets are print in container 
