@@ -56,7 +56,7 @@ To update your task execution IAM role. Use the IAM console to update your task 
 ### **Step 3:** Create an Amazon ECS Task Definition
 We can use the Amazon ECS console to create a task definition that references a Secrets Manager secret. To create a task definition that specifies a secret
 Use the IAM console to update your task execution role with the required permissions.
-1. Open the [console](https://console.aws.amazon.com/ecs/v2).
+1. Open the [Console](https://console.aws.amazon.com/ecs/v2).
 2. In the navigation pane, choose Task definitions.
 3. Choose Create new task definition, Create new task definition with JSON.
 
