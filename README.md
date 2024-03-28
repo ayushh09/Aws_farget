@@ -152,5 +152,5 @@ Secrets are print in container
 
 | References | 
 |------------|
-| [Retrieve Secrets Manager secrets through environment variables](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html)|
-| [Specifying Sensitive Data Using Secrets Manager Secrets](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data-tutorial.html)|
+| 1. [Retrieve Secrets Manager secrets through environment variables](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html)|
+| 2.  [Specifying Sensitive Data Using Secrets Manager Secrets](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data-tutorial.html)|
